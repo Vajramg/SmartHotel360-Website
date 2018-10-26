@@ -11,17 +11,17 @@ RUN dotnet build -c Release -o /webapp
 
 
 FROM node:8.12.0-alpine as node
-WORKDIR /src/
+WORKDIR /src/Source/SmartHotel360.Website/
 COPY . .
-WORKDIR /src/ClientApp
+WORKDIR /src/Source/SmartHotel360.Website/ClientApp
 RUN npm install
 RUN npm rebuild node-sass
 RUN npm run build
 RUN cp -r build/* /src/wwwroot
 
 FROM build AS publish
-WORKDIR /src/ClientApp
-WORKDIR /src
+WORKDIR /src/Source/SmartHotel360.Website/ClientApp
+WORKDIR /src/Source/SmartHotel360.Website/
 RUN dotnet publish -c Release -o /webapp
 
 FROM base AS final
