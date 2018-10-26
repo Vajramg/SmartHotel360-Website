@@ -28,4 +28,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /webapp .
 COPY --from=node /src/Source/SmartHotel360.Website/wwwroot ./wwwroot
-ENTRYPOINT ["dotnet", "SmartHotel360.PublicWeb.dll"]
+ENTRYPOINT ["dotnet", "SmartHotel360.Website.dll"]
