@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/dotnet:2.2.100-preview1-sdk-alpine AS build
-WORKDIR /src/Source/SmartHotel360.Website
+WORKDIR /src/Source/SmartHotel360.Website/
 COPY SmartHotel360.PublicWeb.csproj .
 RUN dotnet restore
 COPY . .
