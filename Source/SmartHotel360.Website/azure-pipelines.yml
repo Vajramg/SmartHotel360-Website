@@ -14,7 +14,7 @@ steps:
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: shregistry.azurecr.io
-    dockerFile: SmartHotel360.PublicWeb/Dockerfile
+    dockerFile: Source/SmartHotel360.PublicWeb/Dockerfile
     useDefaultContext: false
     buildContext: Source/SmartHotel360.PublicWeb
     imageName: '$(imageName)'
