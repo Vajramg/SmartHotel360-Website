@@ -17,7 +17,7 @@ WORKDIR /src/Source/SmartHotel360.Website/ClientApp
 RUN npm install
 RUN npm rebuild node-sass
 RUN npm run build
-RUN cp -r build/* /src/wwwroot
+RUN cp -r build/* /src/Source/SmartHotel360.Website/wwwroot
 
 FROM build AS publish
 WORKDIR /src/Source/SmartHotel360.Website/ClientApp
@@ -27,5 +27,5 @@ RUN dotnet publish -c Release -o /webapp
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /webapp .
-COPY --from=node /src/wwwroot ./wwwroot
+COPY --from=node /src/Source/SmartHotel360.Website/wwwroot ./wwwroot
 ENTRYPOINT ["dotnet", "SmartHotel360.PublicWeb.dll"]
