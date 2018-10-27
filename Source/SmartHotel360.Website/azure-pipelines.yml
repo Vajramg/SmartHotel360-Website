@@ -9,8 +9,9 @@ variables:
   imageName: 'sh360web:$(build.buildId)'
 steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
-#  displayName: 'docker build'
+
 - task: Docker@1
+  displayName: 'docker build'
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: shregistry.azurecr.io
@@ -20,6 +21,7 @@ steps:
     imageName: '$(imageName)'
     includeLatestTag: true
 - task: Docker@1
+  displayName: 'docker push image with BuildID tag'
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: shregistry.azurecr.io
@@ -27,6 +29,7 @@ steps:
     imageName: '$(imageName)'
     includeLatestTag: true
 - task: Docker@1
+  displayName: 'docker push image with latest tag'
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: shregistry.azurecr.io
