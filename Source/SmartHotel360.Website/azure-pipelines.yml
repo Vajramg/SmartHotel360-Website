@@ -7,6 +7,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 variables:
   imageName: 'sh360web:$(build.buildId)'
+  acrName: 'shregistry.azurecr.io'
 steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 
@@ -14,7 +15,7 @@ steps:
   displayName: 'docker build'
   inputs:
     azureSubscriptionEndpoint: RMPM
-    azureContainerRegistry: shregistry.azurecr.io
+    azureContainerRegistry:  '$(acrName)'
     dockerFile: Source/SmartHotel360.Website/Dockerfile
     useDefaultContext: false
     buildContext: Source/SmartHotel360.Website
@@ -24,7 +25,7 @@ steps:
   displayName: 'docker push image with BuildID tag'
   inputs:
     azureSubscriptionEndpoint: RMPM
-    azureContainerRegistry: shregistry.azurecr.io
+    azureContainerRegistry: '$(acrName)'
     command: 'Push an image'
     imageName: '$(imageName)'
     includeLatestTag: true
@@ -32,7 +33,7 @@ steps:
   displayName: 'docker push image with latest tag'
   inputs:
     azureSubscriptionEndpoint: RMPM
-    azureContainerRegistry: shregistry.azurecr.io
+    azureContainerRegistry: '$(acrName)'
     command: 'Push an image'
     imageName: 'sh360web:smarthotel'
     includeLatestTag: true
