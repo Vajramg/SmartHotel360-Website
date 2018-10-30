@@ -34,5 +34,5 @@ steps:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: shregistry.azurecr.io
     command: 'Push an image'
-    imageName: 'sh360web:latest'
+    imageName: 'sh360web:smarthotel'
     includeLatestTag: true
