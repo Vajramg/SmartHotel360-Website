@@ -8,6 +8,7 @@ pool:
 variables:
   imageName: 'sh360web:$(build.buildId)'
   acrName: 'shregistry.azurecr.io'
+  customTag: 'sh360'
 steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 
@@ -21,6 +22,12 @@ steps:
     buildContext: Source/SmartHotel360.Website
     imageName: '$(imageName)'
     includeLatestTag: true
+- task: Docker@1
+  displayName: 'Tag image'
+  inputs:
+    command: 'Tag image'
+    imageName: '$(imageName)'
+    arguments: 'sh360web:$(customTag)'    
 - task: Docker@1
   displayName: 'docker push image with BuildID tag'
   inputs:
@@ -36,4 +43,10 @@ steps:
     azureContainerRegistry: '$(acrName)'
     command: 'Push an image'
     imageName: 'sh360web:latest'
-    includeLatestTag: true
+ - task: Docker@1
+  displayName: 'docker push image with custom tag'
+  inputs:
+    azureSubscriptionEndpoint: RMPM
+    azureContainerRegistry: '$(acrName)'
+    command: 'Push an image'
+    imageName: 'sh360web:$(customTag)'
