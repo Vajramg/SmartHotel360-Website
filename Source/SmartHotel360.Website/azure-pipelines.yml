@@ -13,12 +13,6 @@ steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 
 - task: Docker@1
-  displayName: 'Tag image'
-  inputs:
-    command: 'Tag image'
-    imageName: 'sh360web:$(customTag)' 
-    #arguments: 'sh360web:$(customTag)' 
-- task: Docker@1
   displayName: 'docker build'
   inputs:
     azureSubscriptionEndpoint: RMPM
@@ -28,7 +22,14 @@ steps:
     buildContext: Source/SmartHotel360.Website
     imageName: '$(imageName)'
     includeLatestTag: true
-
+- task: Docker@1
+  displayName: 'Tag image with customTag'
+  inputs:
+    azureSubscriptionEndpoint: RMPM
+    azureContainerRegistry: '$(acrName)'
+    command: 'Tag image'
+    imageName: '$(imageName)'
+    arguments: '$(customTag)'
 - task: Docker@1
   displayName: 'docker push image with BuildID tag'
   inputs:
