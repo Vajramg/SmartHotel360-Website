@@ -27,7 +27,7 @@ steps:
   inputs:
     command: 'Tag image'
     imageName: '$(imageName)'
-    arguments: 'sh360web:$(customTag)'    
+    arguments: 'sh360web:$(customTag)' 
 - task: Docker@1
   displayName: 'docker push image with BuildID tag'
   inputs:
@@ -43,7 +43,7 @@ steps:
     azureContainerRegistry: '$(acrName)'
     command: 'Push an image'
     imageName: 'sh360web:latest'
- - task: Docker@1
+- task: Docker@1
   displayName: 'docker push image with custom tag'
   inputs:
     azureSubscriptionEndpoint: RMPM
