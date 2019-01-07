@@ -11,5 +11,5 @@ pool:
 steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
-    azureSubscription: RMCQ
+    azureSubscription: RMPM
     WebAppName: smartHotelApp
